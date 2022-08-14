@@ -6,7 +6,7 @@ authors = ["symonk <jackofspaces@gmail.com>"]
 license = "Apache"
 
 [tool.poetry.scripts]
-mailloader = "pymail_loader._commandline:app"
+pymail_loader = "pymail_loader._commandline:app"
 
 [tool.poetry.dependencies]
 python = "^3.8"

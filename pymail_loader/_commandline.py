@@ -5,7 +5,7 @@ import typer
 
 from pymail_loader import version
 
-app = typer.Typer(name="mailloader")
+app = typer.Typer(name="pymail_loader")
 
 
 POLICY_FACTORY: typing.Dict[typing.Literal["default", "strict", "smtp", "smtputf8", "http"], Policy]
@@ -48,7 +48,34 @@ def send(
     port: int = typer.Option(25, "--port", "-p"),
     tls: bool = typer.Option(False, "--tls"),
     provider: str = typer.Option(None, "--provider", callback=validate_provider),
+    copies: int = typer.Option(1, "--copies"),
+    directory: str = typer.Option(None, "--eml-dir"),
+    envelope_sender: str = typer.Option(None, "--envelope-sender", "-es"),
+    envelope_recipients: typing.List[str] = typer.Option(..., "--envelope-recipients", "-er"),
 ):
+    """
+    The entry point of pymail_loader.
+    :param from_addr: The from address on the email header (also used implicitly as the envelope sender)
+    :param to_addrs: The sender addresses (multiple) on the email header (also used as the envelope recipient)
+    :param cc:
+    :param bcc:
+    :param policy:
+    :param subject:
+    :param message:
+    :param html:
+    :param charset:
+    :param headers:
+    :param verbosity:
+    :param host:
+    :param port:
+    :param tls:
+    :param provider:
+    :param copies:
+    :param directory:
+    :param envelope_sender:
+    :param envelope_recipients:
+    :return:
+    """
     typer.secho(f"pymail_loader loaded.. (verbosity: {verbosity})", fg=typer.colors.BRIGHT_GREEN, bold=True)
 
 
